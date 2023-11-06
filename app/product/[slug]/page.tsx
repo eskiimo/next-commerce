@@ -75,10 +75,11 @@ export default async function ProductPage({
               <AddToCart
                 currency="USD"
                 description={data.description}
-                price={data.price}
                 image={data.images[0]}
                 name={data.name}
+                price={data.price}
                 key={data._id}
+                price_id={data.price_id}
               />
 
               <CheckOut />

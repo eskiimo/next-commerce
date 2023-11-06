@@ -9,11 +9,12 @@ export interface simplifiedProduct{
 
 
 export interface fullProduct{
-     _id:string;
-     name:string
-     images:any;
-     price:number;
-     slug:string;
-     categoryName:string;
-     description:string;
+     _id: string;
+     images: any;
+     price: number;
+     slug: string;
+     categoryName: string;
+     name: string;
+     description: string;
+     price_id: string;
 }

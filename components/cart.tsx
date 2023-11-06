@@ -17,8 +17,23 @@ export default function ShoppingCart() {
     handleCartClick,
     cartDetails,
     removeItem,
+    totalPrice,
+    redirectToCheckout,
   } = useShoppingCart();
-  console.log(Object.values(cartDetails ?? {}));
+
+  async function handleCheckoutClick(event: any) {
+    event.preventDefault();
+    try {
+      const result = await redirectToCheckout();
+      if (result?.error) {
+        console.log("result");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("payment is not vailable! Sorry :'D");
+    }
+  }
+
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={handleCartClick}>
       <SheetContent className="sm:max-w-lg w-[90vw]">
@@ -74,6 +89,34 @@ export default function ShoppingCart() {
                 </>
               )}
             </ul>
+          </div>
+
+          <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+            <div className="flex justify-between text-base font-medium text-gray-900">
+              <p>Subtotal:</p>
+              <p>${totalPrice}</p>
+            </div>
+            <p className="mt-0.5 text-sm text-gray-500">
+              Shipping and taxes are calculated at checkout.
+            </p>
+
+            <div className="mt-6">
+              <Button onClick={handleCheckoutClick} className="w-full">
+                Checkout
+              </Button>
+            </div>
+
+            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+              <p>
+                OR{" "}
+                <button
+                  onClick={() => handleCartClick()}
+                  className=" font-medium text-primary hover:text-primary/80"
+                >
+                  Continue Shopping
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </SheetContent>
