@@ -19,6 +19,9 @@ async function getData(category: string) {
   return data;
 }
 
+// for next js server data fetching and caching
+export const dynamic = "force-dynamic";
+
 export default async function CategoryPage({
   params,
 }: {
